@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone repository') {
+            steps {
+                git 'https://github.com/sadhvi022/UI-UXtest.git'
+            }
+        }
+        stage('Deploy to XAMPP') {
+            steps {
+                sh "scp -r -o StrictHostKeyChecking=no *.html localhost@HTTP/1.1:/opt/lampp/htdocs/"
+            }
+        }
+    }
+}
